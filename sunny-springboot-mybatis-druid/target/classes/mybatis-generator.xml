@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="[e|E]xample$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+	<commentGenerator>
+		<property name="suppressDate" value="true" />
+	</commentGenerator>
+	<!-- 设置数据库和数据库用户和密码 -->
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://localhost:3306/crm28" userId="root"
+		password="root">
+	</jdbcConnection>
+
+	<javaTypeResolver>
+		<property name="forceBigDecimals" value="false" />
+	</javaTypeResolver>
+
+	<!-- generate Model  targetPackage是生成实体类包路径-->
+	<javaModelGenerator targetPackage="com.sunny.dao"
+		targetProject="${entity.target.dir}">
+		<property name="enableSubPackages" value="true" />
+		<property name="trimStrings" value="true" />
+	</javaModelGenerator>
+
+
+
+	<!-- 自动生成xml（但是好像一直没有生成功，反正也不用xml） -->
+	<sqlMapGenerator  targetPackage="com.sunny.mapper"
+		targetProject="${dao.resources.dir}">
+		<property name="enableSubPackages" value="true" />
+	</sqlMapGenerator>
+
+	<!-- 自动生成mapper接口, 可以是 ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER(不知道) -->
+	<javaClientGenerator type="ANNOTATEDMAPPER"
+		targetPackage="com.sunny.mapper" implementationPackage="com.sunny.mapper.impl"
+		targetProject="${entity.target.dir}">
+		<property name="enableSubPackages" value="true" />
+	</javaClientGenerator>
+	<!-- 设置数据库表 -->
+	<table tableName="sys_basedict" ></table>
+	<table tableName="sys_customer" ></table>
+	<table tableName="sys_customer_detail" ></table>
+	<table tableName="sys_linkman" ></table>
+	<table tableName="sys_role" ></table>
+	<table tableName="sys_user" ></table>
+	<table tableName="sys_user_role" ></table>
+	<table tableName="sys_visit" ></table>
+	<!-- <table tableName="user" ></table>
+	<table tableName="alertType" domainObjectName="AlertType">
+	</table> -->
+
+	</context>
+</generatorConfiguration>  
